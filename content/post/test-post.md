@@ -1,10 +1,10 @@
 +++
-authors = [Cas van der Hoven]
+authors = []
 date = 2020-04-18T22:00:00Z
-excerpt = "Excerpt"
-hero = "image link"
+excerpt = "Test post excerpt"
+hero = ""
 timeToRead = 1
-title = "Title"
+title = "Test post"
 
 +++
 Test text body
