@@ -1,5 +1,5 @@
 +++
-authors = [Cas van der Hoven]
+authors = []
 date = 2020-04-19T18:54:01Z
 excerpt = "A quick walkthrough of the different systems I use to stay productive."
 hero = ""
