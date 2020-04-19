@@ -6,7 +6,8 @@ jobs:
     steps:
       - name: Git Checkout
         uses: actions/checkout@v2
-        submodules: true
+        with:
+          submodules: true
 
       - name: Setup hugo
         uses: peaceiris/actions-hugo@v2
