@@ -6,6 +6,7 @@ jobs:
     steps:
       - name: Git Checkout
         uses: actions/checkout@v2
+        submodules: true
 
       - name: Setup hugo
         uses: peaceiris/actions-hugo@v2
@@ -21,7 +22,7 @@ jobs:
         with:
           personal_token: ${{ secrets.TOKEN }}
           external_repository: casvanderhoven/casvanderhoven
-          publish_dir: public
+          publish_dir: ./public
         #   keep_files: true
           user_name: casvanderhoven
           user_email: casvanderhoven@gmail.com
