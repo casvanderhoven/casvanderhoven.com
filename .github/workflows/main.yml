@@ -20,11 +20,10 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.TOKEN }}
-          external_repository: casvanderhoven/casvanderhoven.github.io
+          external_repository: casvanderhoven
           publish_dir: ./public
         #   keep_files: true
           user_name: casvanderhoven
           user_email: casvanderhoven@gmail.com
           publish_branch: master
         #   cname: example.com
-        
