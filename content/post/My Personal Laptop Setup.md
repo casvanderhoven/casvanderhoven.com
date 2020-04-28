@@ -23,16 +23,16 @@ Add-ons:
 
 ## Password Manager: 1Password
 
-There are numerous options out there for password managers. I opted for 1Password because it has cross-platform support for all my devices.
+There are numerous options out there for password managers. I opted for [1Password](https://1password.com/) because it has cross-platform support for all my devices.
 
 ## Note-taking application
 
-I use Roam Research, which is much more than a simple note-taking app. It's marketed as a 'tool for networked thought', and I absolutely love it. Notes in Roam are free-form, and you can interconnect any thought using the amazing bi-directional linking feature. I do most of my note-taking, thinking, researching and writing in Roam.
-I also use Drafts for quick notes while I cannot access Roam. I found [this neat Drafts Action](https://actions.getdrafts.com/a/162) to quickly export notes to Roam.
+I use [Roam Research](https://roamresearch.com), which is much more than a simple note-taking app. It's marketed as a 'tool for networked thought', and I absolutely love it. Notes in Roam are free-form, and you can interconnect any thought using the amazing bi-directional linking feature. I do most of my note-taking, thinking, researching and writing in Roam.
+I also use [Drafts](https://getdrafts.com) for quick notes while I cannot access Roam. I found [this neat Drafts Action](https://actions.getdrafts.com/a/162) to quickly export notes to Roam.
 
 ## Application Launcher
 
-While both MacOS and Windows offer decent app launchers, I wanted a bit more functionality. I use Alfred on MacOS, and the open-source Keypirinha on Windows.
+While both MacOS and Windows offer decent app launchers, I wanted a bit more functionality. I use [Alfred](https://www.alfredapp.com/) on MacOS, and the open-source [Keypirinha](https://keypirinha.com/) on Windows.
 
 ## Text Replacement
 
