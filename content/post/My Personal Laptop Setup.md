@@ -1,7 +1,7 @@
 +++
 authors = ["Cas van der Hoven"]
 date = 2020-04-28T18:54:01Z
-excerpt = "A quick walkthrough of the different tools I use to stay productive."
+excerpt = "A quick walkthrough of the different tools I use on my laptops."
 hero = "/images/andras-vas-Bd7gNnWJBkU-unsplash.jpg"
 timeToRead = 5
 title = "My Personal Laptop Setup"
