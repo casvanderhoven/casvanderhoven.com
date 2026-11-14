@@ -1,4 +1,0 @@
-# Static site: no build step.
-[build]
-  command = "echo no build step"
-  publish = "."
