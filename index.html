@@ -71,11 +71,14 @@
     color: var(--paper);
     outline: none;
   }
-  small { font-size: 0.6em; letter-spacing: 0.12em; text-transform: uppercase; }
+  .label { display: grid; gap: 0.2rem; }
+  small { font-size: 0.6em; font-weight: 400; letter-spacing: 0.01em; text-transform: none; opacity: 0.75; }
   .arrow { font-size: 1.1em; transition: transform 0.15s; }
   a:hover .arrow, a:focus-visible .arrow { transform: translateX(0.3rem); }
 
-  .mark { width: 1.25rem; height: 1.25rem; display: block; }
+  .mark { width: 1.25rem; height: 1.25rem; display: block; transition: transform 0.5s cubic-bezier(.5,1.6,.4,1); }
+  a:hover .mark, a:focus-visible .mark { transform: rotate(180deg); }
+  a:hover .triangle, a:focus-visible .triangle { transform: rotate(120deg); }
   .square { background: var(--red); }
   .circle { background: var(--blue); border-radius: 50%; }
   .triangle { background: var(--yellow); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
@@ -84,10 +87,27 @@
   .art { display: grid; grid-template-rows: minmax(0, 3fr) minmax(0, 2fr); min-height: 0; overflow: hidden; }
   .art div { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
   .art svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .art .top { border-bottom: var(--rule) solid var(--ink); background: var(--yellow); }
+  .art { --c1: var(--yellow); --c2: var(--blue); --c3: var(--red); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .art .top { border-bottom: var(--rule) solid var(--ink); background: var(--c1); }
   .art .bottom { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
-  .art .bottom > :first-child { background: var(--red); border-right: var(--rule) solid var(--ink); }
+  .art .bottom > :first-child { background: var(--c3); border-right: var(--rule) solid var(--ink); }
   .art .bottom > :last-child { background: var(--paper); }
+  .art .top, .art .bottom > div { transition: background-color 0.5s; }
+  .art svg * { transform-box: fill-box; transform-origin: center; transition: transform 0.6s cubic-bezier(.5,1.5,.4,1), fill 0.5s; }
+
+  /* Hover: each panel moves its shape. Click: the colours rotate and the shapes take a new position. */
+  .half-top { transform-origin: bottom center; }
+  .half-bottom { transform-origin: top center; }
+  .top:hover .half-top { transform: translateX(-12%); }
+  .top:hover .half-bottom { transform: translateX(12%); }
+  .wedge { transform: scaleX(var(--flip, 1)); }
+  .tri:hover .wedge { transform: scaleX(calc(var(--flip, 1) * -1)); }
+  .quarter { transform-box: view-box; transform: rotate(calc(var(--turn, 0) * 90deg)); }
+  .arc:hover .quarter { transform: rotate(calc(var(--turn, 0) * 90deg + 90deg)); }
+  .dot { transform-box: view-box; }
+  .arc:hover .dot { transform: scale(1.6); }
+  .art.pop .top svg { animation: pop 0.5s; }
+  @keyframes pop { 40% { transform: scale(1.12); } }
 
   @media (max-width: 720px) {
     body { grid-template-columns: 1fr; grid-template-rows: 38svh 1fr; }
@@ -95,7 +115,7 @@
     .art { order: 1; border-bottom: var(--rule) solid var(--ink); }
   }
   @media (prefers-reduced-motion: reduce) {
-    a, .arrow { transition: none; }
+    a, .arrow, .mark, .art * { transition: none !important; animation: none !important; }
   }
 </style>
 </head>
@@ -105,8 +125,8 @@
     <nav aria-label="Links">
       <ul>
         <li><a href="https://www.linkedin.com/in/casimirvanderhoven/" rel="me noopener"><i class="mark square" aria-hidden="true"></i>LinkedIn<span class="arrow" aria-hidden="true">&rarr;</span></a></li>
-        <li><a href="https://aski.fit/" rel="noopener"><i class="mark circle" aria-hidden="true"></i>Aski<span class="arrow" aria-hidden="true">&rarr;</span></a></li>
-        <li><a href="https://haftalik.casvanderhoven.com/" rel="noopener"><i class="mark triangle" aria-hidden="true"></i>Haftalik<span class="arrow" aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="https://aski.fit/" rel="noopener"><i class="mark circle" aria-hidden="true"></i><span class="label">Aski<small>Your training week on iPhone and Apple Watch</small></span><span class="arrow" aria-hidden="true">&rarr;</span></a></li>
+        <li><a href="https://haftalik.casvanderhoven.com/" rel="noopener"><i class="mark triangle" aria-hidden="true"></i><span class="label">Haftalik<small>The weekly menu for your household</small></span><span class="arrow" aria-hidden="true">&rarr;</span></a></li>
       </ul>
     </nav>
   </main>
@@ -114,23 +134,41 @@
   <div class="art" aria-hidden="true">
     <div class="top">
       <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
-        <circle cx="50" cy="50" r="34" fill="var(--blue)"/>
-        <rect x="0" y="48" width="100" height="4" fill="var(--ink)"/>
+        <path class="half-top" d="M16 50 A34 34 0 0 1 84 50 Z" fill="var(--c2)"/>
+        <path class="half-bottom" d="M16 50 A34 34 0 0 0 84 50 Z" fill="var(--c2)"/>
+        <rect x="-20" y="48" width="140" height="4" fill="var(--ink)"/>
       </svg>
     </div>
     <div class="bottom">
-      <div>
+      <div class="tri">
         <svg viewBox="0 0 100 100" preserveAspectRatio="none">
-          <polygon points="0,100 100,100 0,0" fill="var(--ink)"/>
+          <polygon class="wedge" points="0,100 100,100 0,0" fill="var(--ink)"/>
         </svg>
       </div>
-      <div>
+      <div class="arc">
         <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-          <path d="M20 80 A60 60 0 0 1 80 20 L80 80 Z" fill="var(--ink)"/>
-          <circle cx="62" cy="62" r="9" fill="var(--yellow)"/>
+          <path class="quarter" d="M20 80 A60 60 0 0 1 80 20 L80 80 Z" fill="var(--ink)"/>
+          <circle class="dot" cx="50" cy="50" r="9" fill="var(--c1)"/>
         </svg>
       </div>
     </div>
   </div>
+<script>
+  // Click on the composition: rotate the three colours and move the shapes.
+  (function () {
+    var art = document.querySelector('.art');
+    var colours = ['var(--yellow)', 'var(--blue)', 'var(--red)'];
+    var step = 0;
+    art.addEventListener('click', function () {
+      step++;
+      for (var i = 0; i < 3; i++) art.style.setProperty('--c' + (i + 1), colours[(i + step) % 3]);
+      art.style.setProperty('--turn', step);
+      art.style.setProperty('--flip', step % 2 ? -1 : 1);
+      art.classList.remove('pop');
+      void art.offsetWidth;
+      art.classList.add('pop');
+    });
+  })();
+</script>
 </body>
 </html>
